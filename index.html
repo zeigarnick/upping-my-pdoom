@@ -1,0 +1,135 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I'm Upping My P(doom)</title>
+<meta name="description" content="A watercolor music video starring Clawd.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600;700&family=Gaegu:wght@400;700&family=Pixelify+Sans:wght@500;600;700&display=swap">
+<style>
+  :root {
+    --room: #17132a;
+    --room-2: #221c3d;
+    --paper: #fff8ee;
+    --ink: #2b2140;
+    --coral: #f15b45;
+    --butter: #ffd35c;
+    --mint: #6fd6b0;
+    --muted: #b9b0d6;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: radial-gradient(120% 90% at 50% 0%, var(--room-2), var(--room) 70%);
+    color: var(--paper);
+    font-family: "Gaegu", "Comic Sans MS", cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  #player {
+    width: min(100%, calc((100vh - 110px) * 16 / 9));
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  #player:fullscreen { width: 100vw; height: 100vh; justify-content: center; background: #000; gap: 0; }
+  #frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--paper);
+    box-shadow: 0 0 0 3px #2e2750, 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+  #player:fullscreen #frame { border-radius: 0; box-shadow: none; width: min(100vw, calc(100vh * 16 / 9)); margin: 0 auto; }
+  #stage, #stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+  #loader {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    background: var(--paper); color: var(--ink); text-align: center; transition: opacity 0.6s ease;
+  }
+  body.poster #loader { opacity: 0; pointer-events: none; }
+  #paintpill {
+    position: absolute; left: 2%; bottom: 3.5%; padding: 8px 18px; border-radius: 99px;
+    background: rgba(255, 248, 238, 0.92); color: var(--ink); border: 2px solid var(--ink);
+    font-family: "Pixelify Sans", ui-monospace, monospace; font-size: clamp(12px, 1.4vw, 17px); font-variant-numeric: tabular-nums;
+    opacity: 0; transition: opacity 0.4s; pointer-events: none; white-space: nowrap;
+  }
+  body.poster:not(.ready) #paintpill { opacity: 1; }
+  #loader h1 { font-family: "DynaPuff", system-ui, sans-serif; font-weight: 700; font-size: clamp(28px, 4.6vw, 64px); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+  #loader h1 span { color: var(--coral); }
+  #loader p { margin: 0; font-size: clamp(18px, 2vw, 26px); }
+  .bar { width: min(420px, 70%); height: 14px; border-radius: 99px; background: #ece4d6; overflow: hidden; box-shadow: inset 0 0 0 2px var(--ink); }
+  #loadbar { height: 100%; width: 0%; background: repeating-linear-gradient(-45deg, var(--coral) 0 14px, #f7866f 14px 28px); transition: width 0.2s; }
+  #bigplay {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.9);
+    width: clamp(64px, 10vw, 124px); aspect-ratio: 1; border-radius: 50%; border: 4px solid var(--ink);
+    background: var(--coral); cursor: pointer; opacity: 0; pointer-events: none; box-shadow: 0 8px 0 var(--ink);
+    transition: opacity 0.35s, transform 0.2s;
+  }
+  #bigplay::after { content: ""; position: absolute; left: 38%; top: 28%; border-left: calc(clamp(64px, 10vw, 124px) * 0.34) solid var(--paper); border-top: calc(clamp(64px, 10vw, 124px) * 0.22) solid transparent; border-bottom: calc(clamp(64px, 10vw, 124px) * 0.22) solid transparent; }
+  body.ready:not(.playing) #bigplay { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+  body.ready.started:not(.playing) #bigplay { top: 50%; }
+  #bigplay:hover { transform: translate(-50%, -50%) scale(1.06); }
+  #bigplay:focus-visible, .ctl button:focus-visible, #scrub:focus-visible { outline: 3px solid var(--butter); outline-offset: 3px; }
+  .ctl { display: flex; align-items: center; gap: 12px; padding: 6px 4px; font-family: "Pixelify Sans", ui-monospace, monospace; font-size: 15px; color: var(--muted); }
+  #player:fullscreen .ctl { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 24px; background: linear-gradient(transparent, rgba(0,0,0,0.6)); opacity: 0; transition: opacity 0.3s; }
+  body.awake #player:fullscreen .ctl { opacity: 1; }
+  .ctl button {
+    appearance: none; border: 2px solid #4a4178; background: #2a2349; color: var(--paper); border-radius: 10px; height: 38px; min-width: 38px; padding: 0 12px;
+    font: inherit; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .ctl button:hover { border-color: var(--butter); }
+  #btn-play::before { content: ""; border-left: 12px solid var(--paper); border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
+  body.playing #btn-play::before { border: 0; width: 4px; height: 14px; background: var(--paper); box-shadow: 7px 0 0 var(--paper); margin-right: 7px; }
+  #btn-cc[aria-pressed="false"] { opacity: 0.55; text-decoration: line-through; }
+  #scrub { flex: 1; min-width: 0; accent-color: var(--coral); height: 24px; cursor: pointer; }
+  #time { font-variant-numeric: tabular-nums; min-width: 88px; text-align: right; }
+  .credit { font-size: 16px; color: #8e85b3; text-align: center; margin: 0; }
+  @media (max-width: 560px) { .ctl { gap: 8px; } #time { display: none; } .credit { display: none; } }
+  @media (prefers-reduced-motion: reduce) { #bigplay, #loader { transition: none; } }
+</style>
+<div id="player">
+  <div id="frame">
+    <div id="stage"></div>
+    <div id="loader" role="status" aria-live="polite">
+      <h1>I'm Upping My <span>P(doom)</span></h1>
+      <p>Mixing the watercolors… <span id="loadpct">0%</span></p>
+      <div class="bar"><div id="loadbar"></div></div>
+    </div>
+    <div id="paintpill" role="status" aria-live="polite">Painting the scenes <span id="pillpct">0%</span></div>
+    <button id="bigplay" aria-label="Play the video"></button>
+  </div>
+  <div class="ctl">
+    <button id="btn-play" aria-label="Play"></button>
+    <input id="scrub" type="range" min="0" max="1000" value="0" aria-label="Seek">
+    <span id="time">0:00 / 2:36</span>
+    <button id="btn-cc" aria-pressed="true" aria-label="Toggle lyrics">Lyrics</button>
+    <button id="btn-fs" aria-label="Full screen">Full screen</button>
+  </div>
+  <p class="credit" id="credit">Space to play or pause · arrow keys skip 5s · L toggles lyrics · F for full screen</p>
+</div>
+<audio id="song" src="pdoom.mp3" preload="auto"></audio>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.2.3/p5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/p5.brush@2.2.3/dist/p5.brush.js"></script>
+<script src="src/data.js"></script>
+<script src="src/core.js"></script>
+<script src="src/art.js"></script>
+<script src="src/main.js"></script>
+<script src="src/kit.js"></script>
+<script>
+  // Scene files load in order; ?scenes=s03,s04 loads only those (for testing one scene in isolation).
+  (function () {
+    const all = ['s01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 's11', 's12', 's13', 's14', 's15'];
+    const only = new URLSearchParams(location.search).get('scenes');
+    const list = only ? only.split(',').filter((x) => all.includes(x)) : all;
+    for (const s of list) document.write('<script src="src/scenes/' + s + '.js"><\/script>');
+  })();
+</script>

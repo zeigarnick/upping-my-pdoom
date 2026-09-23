@@ -1,0 +1,16 @@
+{
+  "name": "upping-my-pdoom",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A watercolor p5.brush music video for \"I'm Upping My P(doom)\", made with Claude Code.",
+  "license": "MIT",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "frames": "node tools/frames.js",
+    "export": "node tools/export.js",
+    "bundle": "python3 tools/build.py"
+  },
+  "devDependencies": {
+    "playwright-core": "1.63.0"
+  }
+}
