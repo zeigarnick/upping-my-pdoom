@@ -2,9 +2,9 @@
 
 A 2:36 watercolor music video, animated in the browser with p5.js and p5.brush, synced word by word to the song.
 
-[![Title card: Pip and Clawd under the painted "I'm Upping My P(doom)" title. Click to watch.](docs/media/poster.jpg)](https://github.com/zeigarnick/upping-my-pdoom/releases/download/v1.0.0/upping-my-pdoom.mp4)
+[![Title card: Pip and Clawd under the painted "I'm Upping My P(doom)" title. Click to watch.](docs/media/poster.jpg)](https://x.com/wzsng/status/2102745158093820093)
 
-**▶ Watch it:** [download the MP4 (1080p, 2:36)](https://github.com/zeigarnick/upping-my-pdoom/releases/download/v1.0.0/upping-my-pdoom.mp4) from the [v1.0.0 release](https://github.com/zeigarnick/upping-my-pdoom/releases/tag/v1.0.0), or [play it live in your browser](https://zeigarnick.github.io/upping-my-pdoom/) (the real-time p5.js version).
+**▶ Watch it:** [on X](https://x.com/wzsng/status/2102745158093820093), [play it live in your browser](https://zeigarnick.github.io/upping-my-pdoom/) (the real-time p5.js version), or [download the 1080p MP4](https://github.com/zeigarnick/upping-my-pdoom/releases/download/v1.0.0/upping-my-pdoom.mp4) from the [v1.0.0 release](https://github.com/zeigarnick/upping-my-pdoom/releases/tag/v1.0.0).
 
 **Song credits:** the song is [P(doom)](https://www.youtube.com/watch?v=uEB5E67vcPA), posted by osmarks in 2024, with the lyrics and their [objectively correct interpretation](https://docs.osmarks.net/hypha/p(doom)_song_objectively_correct_interpretation) on docs.osmarks.net.
 I found the track through [@slimer48484's post on X](https://x.com/slimer48484/status/2097752569212756134), and the idea came from [John Heibel's version](https://github.com/JohnHeibel/PDoomVideo).
