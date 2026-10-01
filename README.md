@@ -5,7 +5,7 @@ It was made with two prompts to Claude Code.
 
 [![Title card: Pip and Clawd under the painted "I'm Upping My P(doom)" title. Click to watch.](docs/media/poster.jpg)](https://github.com/zeigarnick/upping-my-pdoom/releases/download/v1.0.0/upping-my-pdoom.mp4)
 
-**▶ Watch it:** [download the MP4 (1080p, 2:36)](https://github.com/zeigarnick/upping-my-pdoom/releases/download/v1.0.0/upping-my-pdoom.mp4) from the [v1.0.0 release](https://github.com/zeigarnick/upping-my-pdoom/releases/tag/v1.0.0), or [run it live in your browser](#run-it).
+**▶ Watch it:** [download the MP4 (1080p, 2:36)](https://github.com/zeigarnick/upping-my-pdoom/releases/download/v1.0.0/upping-my-pdoom.mp4) from the [v1.0.0 release](https://github.com/zeigarnick/upping-my-pdoom/releases/tag/v1.0.0), or [play it live in your browser](https://zeigarnick.github.io/upping-my-pdoom/) (the real-time p5.js version).
 
 **Song credits:** the lyrics come from [P(Doom) Song Objectively Correct Interpretation](https://docs.osmarks.net/hypha/p(doom)_song_objectively_correct_interpretation) on docs.osmarks.net, and the audio is the [Suno version by @slimer48484](https://x.com/slimer48484/status/2097752569212756134).
 The song is theirs; the animation is what this repo adds.
