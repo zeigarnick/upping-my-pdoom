@@ -4,7 +4,8 @@ Copyright (c) 2026 zeigarnick
 
 This license covers the source code in this repository. It does not cover the
 song "I'm Upping My P(doom)", its lyrics or audio (pdoom.mp3, lyrics.txt and the
-lyric text in src/data.js), or the Clawd character design (clawd.png).
+lyric text in src/data.js), which belong to their creators (see README), or the
+Clawd character design (clawd.png).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

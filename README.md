@@ -3,9 +3,12 @@
 A 2:36 watercolor music video, animated in the browser with p5.js and p5.brush, synced word by word to the song.
 It was made with two prompts to Claude Code.
 
-![Title card: Pip and Clawd under the painted "I'm Upping My P(doom)" title](docs/media/poster.jpg)
+[![Title card: Pip and Clawd under the painted "I'm Upping My P(doom)" title. Click to watch.](docs/media/poster.jpg)](https://github.com/zeigarnick/upping-my-pdoom/releases/download/v1.0.0/upping-my-pdoom.mp4)
 
-**Watch it:** [the video on X](TODO-add-link-to-the-X-post)
+**▶ Watch it:** [download the MP4 (1080p, 2:36)](https://github.com/zeigarnick/upping-my-pdoom/releases/download/v1.0.0/upping-my-pdoom.mp4) from the [v1.0.0 release](https://github.com/zeigarnick/upping-my-pdoom/releases/tag/v1.0.0), or [run it live in your browser](#run-it).
+
+**Song credits:** the lyrics come from [P(Doom) Song Objectively Correct Interpretation](https://docs.osmarks.net/hypha/p(doom)_song_objectively_correct_interpretation) on docs.osmarks.net, and the audio is the [Suno version by @slimer48484](https://x.com/slimer48484/status/2097752569212756134).
+The song is theirs; the animation is what this repo adds.
 
 ![Six stills: Clawd's firework eyes, FOOM!, the shoggoth under a magnifying glass, the drop, the keyhole, the finale](docs/media/stills.jpg)
 
@@ -163,6 +166,8 @@ tools/                frame renderer, MP4 exporter, bundler, audio analysis
 ## License and credits
 
 - The code is released under the [MIT License](LICENSE).
-- The song "I'm Upping My P(doom)", its lyrics and its audio (`pdoom.mp3`, `lyrics.txt` and the lyric text in `src/data.js`) are not covered by the MIT License. All rights reserved.
+- The song "I'm Upping My P(doom)" is not covered by the MIT License and belongs to its creators:
+  - **Lyrics** (`lyrics.txt` and the lyric text in `src/data.js`): [P(Doom) Song Objectively Correct Interpretation](https://docs.osmarks.net/hypha/p(doom)_song_objectively_correct_interpretation) on docs.osmarks.net, where the first verse is credited to MusicPerson on Udio and the rest to the page's author and collaborators.
+  - **Audio** (`pdoom.mp3`): the [Suno version by @slimer48484](https://x.com/slimer48484/status/2097752569212756134).
 - Clawd, the AI character, comes from the supplied `clawd.png` design (the Claude Code mascot). The design is not covered by the MIT License.
 - Built with [p5.js](https://p5js.org) (LGPL-2.1) and [p5.brush](https://github.com/acamposuribe/p5.brush) (MIT), with the DynaPuff, Gaegu and Pixelify Sans fonts from Google Fonts (SIL Open Font License).
