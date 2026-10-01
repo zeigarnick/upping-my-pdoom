@@ -78,22 +78,23 @@
   body.ready:not(.playing) #bigplay { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
   body.ready.started:not(.playing) #bigplay { top: 50%; }
   #bigplay:hover { transform: translate(-50%, -50%) scale(1.06); }
-  #bigplay:focus-visible, .ctl button:focus-visible, #scrub:focus-visible { outline: 3px solid var(--butter); outline-offset: 3px; }
+  #bigplay:focus-visible, .ctl button:focus-visible, #scrub:focus-visible, .ctl a:focus-visible { outline: 3px solid var(--butter); outline-offset: 3px; }
   .ctl { display: flex; align-items: center; gap: 12px; padding: 6px 4px; font-family: "Pixelify Sans", ui-monospace, monospace; font-size: 15px; color: var(--muted); }
   #player:fullscreen .ctl { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 24px; background: linear-gradient(transparent, rgba(0,0,0,0.6)); opacity: 0; transition: opacity 0.3s; }
   body.awake #player:fullscreen .ctl { opacity: 1; }
-  .ctl button {
+  .ctl button, .ctl a {
     appearance: none; border: 2px solid #4a4178; background: #2a2349; color: var(--paper); border-radius: 10px; height: 38px; min-width: 38px; padding: 0 12px;
     font: inherit; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   }
-  .ctl button:hover { border-color: var(--butter); }
+  .ctl a { text-decoration: none; white-space: nowrap; box-sizing: border-box; }
+  .ctl button:hover, .ctl a:hover { border-color: var(--butter); }
   #btn-play::before { content: ""; border-left: 12px solid var(--paper); border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
   body.playing #btn-play::before { border: 0; width: 4px; height: 14px; background: var(--paper); box-shadow: 7px 0 0 var(--paper); margin-right: 7px; }
   #btn-cc[aria-pressed="false"] { opacity: 0.55; text-decoration: line-through; }
   #scrub { flex: 1; min-width: 0; accent-color: var(--coral); height: 24px; cursor: pointer; }
   #time { font-variant-numeric: tabular-nums; min-width: 88px; text-align: right; }
   .credit { font-size: 16px; color: #8e85b3; text-align: center; margin: 0; }
-  @media (max-width: 560px) { .ctl { gap: 8px; } #time { display: none; } .credit { display: none; } }
+  @media (max-width: 560px) { .ctl { gap: 8px; } .ctl .long { display: none; } #time { display: none; } .credit { display: none; } }
   @media (prefers-reduced-motion: reduce) { #bigplay, #loader { transition: none; } }
 </style>
 <div id="player">
@@ -113,6 +114,7 @@
     <span id="time">0:00 / 2:36</span>
     <button id="btn-cc" aria-pressed="true" aria-label="Toggle lyrics">Lyrics</button>
     <button id="btn-fs" aria-label="Full screen">Full screen</button>
+    <a id="btn-mp4" href="https://github.com/zeigarnick/upping-my-pdoom/releases/download/v1.0.0/upping-my-pdoom.mp4" title="Download the rendered 1080p MP4 (218 MB)"><span class="long">Download </span>MP4</a>
   </div>
   <p class="credit" id="credit">Space to play or pause · arrow keys skip 5s · L toggles lyrics · F for full screen</p>
 </div>
